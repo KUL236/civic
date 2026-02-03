@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CivicSense</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="light">
+    <header>
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/565/565547.png">
+            <h1>CivicSense</h1>
+            <span>Smart Country Complaint System</span>
+        </div>
+
+        <div class="top-controls">
+            <select id="lang" onchange="changeLang()">
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+            </select>
+            <button onclick="toggleTheme()">🌗</button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- DASHBOARD -->
+        <section class="cards">
+            <div class="card glow">
+                <h3>Active</h3>
+                <p id="activeCount">0</p>
+            </div>
+            <div class="card glow">
+                <h3>Resolved</h3>
+                <p>0</p>
+            </div>
+            <div class="card glow">
+                <h3>Complaints</h3>
+                <p id="cid">0</p>
+            </div>
+            <div class="card glow">
+                <h3>Citizen Score</h3>
+                <p id="score">0</p>
+            </div>
+        </section>
+        <button class="disaster-btn" onclick="toggleDisaster()">🚨 Disaster Mode</button>
+        <!-- FORM -->
+        <section class="form-section glass">
+            <h2 id="tRaise">Raise Complaint</h2>
+
+            <label>Category</label>
+            <select id="category">
+                <option>Garbage</option>
+                <option>Water</option>
+                <option>Road</option>
+                <option>Streetlight</option>
+                <option>Pollution</option>
+                <option>Other</option>
+            </select>
+
+            <label>Description</label>
+            <textarea id="desc" rows="6" placeholder="Describe the issue in detail..."></textarea>
+
+            <button onclick="startVoice()">🎙 Speak</button>
+
+            <label>Upload Photo</label>
+            <input type="file" id="image" accept="image/*" onchange="previewImage()">
+            <img id="preview">
+
+            <button onclick="getLocation()">📍 Get GPS Location</button>
+            <p id="locationText">Location: Not detected</p>
+
+            <div class="ai-box">
+                <input type="checkbox" id="aiCheck">
+                <label>Enable AI Auto Detection</label>
+            </div>
+
+            <button class="submit" onclick="submitComplaint()">Submit Complaint</button>
+        </section>
+
+        <section class="track-search glass">
+            <h2>Track Complaint</h2>
+            <input type="text" id="trackId" placeholder="Enter Complaint ID">
+            <button onclick="trackComplaint()">Track</button>
+            <div id="trackResult"></div>
+        </section>
+
+        <!-- MAP -->
+        <section class="map-box">
+            <h2>Nearby Help Centers</h2>
+            <iframe
+                src="https://maps.google.com/maps?q=municipal%20corporation%20near%20me&t=&z=13&ie=UTF8&iwloc=&output=embed">
+            </iframe>
+        </section>
+
+        <!-- HEATMAP -->
+        <section class="analytics glass">
+            <h2>City Complaint Heatmap (Demo)</h2>
+            <div class="heatmap"></div>
+        </section>
+
+        <section class="contacts glass">
+            <h2>Emergency & Civic Contacts</h2>
+            <div class="contact-card">
+                🏛 Municipal Corporation<br>
+                📞 1800-123-456
+            </div>
+            <div class="contact-card">
+                👮 Police Station<br>
+                📞 112
+            </div>
+        </section>
+
+        <section class="open-data glass">
+            <h2>Open Civic Data</h2>
+            <ul>
+                <li>Total Complaints: <span id="od1">0</span></li>
+                <li>Resolved: <span id="od2">0</span></li>
+                <li>Avg Resolution: 0 hrs</li>
+            </ul>
+        </section>
+
+        <label>Ward / Zone</label>
+        <select id="ward">
+            <option>Zone A</option>
+            <option>Zone B</option>
+            <option>Zone C</option>
+        </select>
+        <section class="zone-analytics glass">
+       <h2>Ward / Zone Live Analytics</h2>
+         <select id="zoneSelect" onchange="updateZone()">
+          <option>Zone A</option>
+          <option>Zone B</option>
+         <option>Zone C</option>
+        </select>
+
+      <canvas id="zoneChart"></canvas>
+</section>
+
+        <section class="share glass">
+            <h2>Spread Awareness</h2>
+            <div class="share-grid">
+                <button onclick="share('whatsapp')">WhatsApp</button>
+                <button onclick="share('x')">X</button>
+                <button onclick="share('instagram')">Instagram</button>
+                <button onclick="share('threads')">Threads</button>
+                <button onclick="share('youtube')">YouTube</button>
+            </div>
+        </section>
+
+        <section class="zone glass">
+            <h2>Ward Analytics</h2>
+            <div class="heatmap"></div>
+        </section>
+
+        <!-- TRACK -->
+        <section class="track glass">
+            <h2>My Complaints</h2>
+            <div id="complaintList"></div>
+        </section>
+
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://civicsense.com/report&size=120x120">
+        <p>Scan to report</p>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

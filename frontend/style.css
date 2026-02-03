@@ -1,0 +1,307 @@
+:root {
+    --bg: #f7f9fc;
+    --card: rgba(255, 255, 255, 0.85);
+    --text: #111;
+}
+
+body.dark {
+    --bg: #0f172a;
+    --card: rgba(30, 41, 59, 0.7);
+    --text: #fff;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Poppins;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #00c853, #1e88e5);
+    color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 40px;
+}
+
+.cards {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+}
+
+.card {
+    flex: 1;
+    background: var(--card);
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.glow {
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.5);
+}
+
+.form-section,
+.track,
+.analytics {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.glass {
+    background: var(--card);
+    backdrop-filter: blur(10px);
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#preview {
+    width: 100%;
+    max-height: 200px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #1e88e5;
+    color: white;
+    margin-top: 10px;
+}
+
+.submit {
+    background: #00c853;
+}
+
+.map-box iframe {
+    width: 100%;
+    height: 250px;
+    border-radius: 16px;
+}
+
+.heatmap {
+    height: 150px;
+    background: radial-gradient(circle at 30% 40%, red, transparent),
+        radial-gradient(circle at 70% 60%, orange, transparent);
+}
+
+.complaint-card {
+    background: #e2e8f0;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.contacts {
+    margin: 20px;
+    padding: 20px;
+}
+
+.contact-card {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.disaster-btn {
+    position: mobile;
+    bottom: 20px;
+    right: 20px;
+    background: red;
+    color: white;
+    padding: 14px;
+    border-radius: 50%;
+    font-size: 18px;
+    box-shadow: 0 0 20px red;
+}
+
+body.disaster {
+    background: #2b0000;
+    color: #fff;
+}
+
+.logo-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+}
+
+.f-logo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    transition: 0.3s;
+}
+
+.f-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+}
+
+.f-logo img {
+    width: 50px;
+    filter: drop-shadow(0 0 10px cyan);
+}
+
+.f-logo span {
+    margin-top: 6px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Color Themes */
+.civic {
+    box-shadow: 0 0 20px #00ffd5;
+}
+
+.muni {
+    box-shadow: 0 0 20px #00ff7f;
+}
+
+.agent {
+    box-shadow: 0 0 20px #ff6ec7;
+}
+
+/* === COMMON GLASS PANEL === */
+.glass {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* === DISASTER MODE === */
+body.disaster {
+    background: radial-gradient(circle, #ff0000 0%, #120000 70%);
+    animation: pulseBg 3s infinite alternate;
+}
+
+@keyframes pulseBg {
+    from {
+        filter: brightness(1);
+    }
+
+    to {
+        filter: brightness(1.3);
+    }
+}
+
+.disaster-btn {
+    position: mobile;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff0000, #ff6a00);
+    color: white;
+    border-radius: 50%;
+    padding: 16px;
+    font-size: 20px;
+    box-shadow: 0 0 25px red;
+}
+
+/* === GAMIFICATION === */
+.score-card {
+    text-align: center;
+    font-size: 22px;
+    color: #00ffd5;
+    text-shadow: 0 0 10px #00ffd5;
+}
+
+/* === OPEN DATA PORTAL === */
+.open-data ul {
+    list-style: none;
+}
+
+.open-data li {
+    margin: 10px 0;
+    padding: 10px;
+    border-left: 4px solid #00ffd5;
+    background: rgba(0, 255, 255, 0.1);
+}
+
+/* === QR COMPLAINT === */
+.qr-box {
+    text-align: center;
+}
+
+.qr-box img {
+    border-radius: 12px;
+    box-shadow: 0 0 20px cyan;
+}
+
+/* === WARD / ZONE === */
+.zone-select select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+/* === SLA TIMER === */
+.sla {
+    color: #ffcc00;
+    font-weight: bold;
+    text-shadow: 0 0 8px #ffcc00;
+}
+
+/* === COMPLAINT CARD === */
+.complaint-card {
+    position: relative;
+    border-left: 4px solid #00ffd5;
+    transition: 0.3s;
+}
+
+.complaint-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.zone-analytics {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+.zone-analytics select {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #0f172a;
+    color: #00ffd5;
+}
