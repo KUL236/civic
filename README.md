@@ -1,0 +1,132 @@
+---
+
+🏙 CivicSense – Smart City Complaint Management System
+
+> CivicSense is an AI-powered, voice-enabled, multilingual smart city platform that allows citizens to report, track, and analyze civic issues in real time.
+
+
+
+
+---
+
+🚀 Features
+
+👤 Citizen Side
+
+🎙 Voice complaint (Hindi & English)
+
+📷 Upload photo with live preview
+
+📍 GPS auto location
+
+🤖 AI image classification
+
+🔄 Track complaint by ID
+
+🗺 Google heatmap of issues
+
+🏙 Ward/Zone analytics (live graphs)
+
+🚨 Disaster mode
+
+🏆 Citizen reputation score
+
+⏱ SLA timer & escalation
+
+📱 QR-based complaint
+
+📣 Social media sharing (WhatsApp, X, Instagram, Threads, YouTube)
+
+🌗 Dark/Light mode
+
+
+🏛 Government / Admin Side
+
+Complaint status workflow
+
+Smart priority engine
+
+Heatmap analytics
+
+Open data dashboard
+
+SMS & WhatsApp alerts
+
+Officer/department routing
+
+
+
+---
+
+🧱 Tech Stack
+
+Layer	Technology
+
+Frontend	HTML, CSS, JavaScript
+Backend	Node.js, Express
+Database	MongoDB Atlas
+AI	Python, Flask, PyTorch
+Maps	Google Maps API
+Alerts	Twilio (SMS + WhatsApp)
+Hosting	Vercel / Netlify
+
+
+
+---
+
+📂 Project Structure
+
+civicsense-smart-city/
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── backend/
+│   ├── server.js
+│   ├── routes/
+│   ├── models/
+│   └── ai/
+│
+└── .gitignore
+
+
+---
+
+⚙️ How to Run Locally
+
+Frontend
+
+cd frontend
+open index.html
+
+Backend
+
+cd backend
+npm install
+node server.js
+
+AI Service
+
+cd backend/ai
+python app.py
+
+
+---
+
+🎯 Hackathon Vision
+
+> CivicSense bridges the gap between citizens and government using AI, automation, and real-time data to create transparent, responsive, and smarter cities.
+
+
+
+
+---
+
+👨‍💻 Author
+
+Kuldeep Singh Rathore
+
+
+---
