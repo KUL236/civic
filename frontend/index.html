@@ -6,8 +6,8 @@
     <title>CivicSense</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="light">
@@ -79,7 +79,14 @@
                 <input type="checkbox" id="aiCheck">
                 <label>Enable AI Auto Detection</label>
             </div>
-
+            <!-- AI Severity Meter -->
+            <div class="severity-box glass">
+                <h3>AI Severity Analysis</h3>
+                <div class="severity-bar">
+                    <span id="severityFill"></span>
+                </div>
+                <p id="severityText">Severity: Not analyzed</p>
+            </div>
             <button class="submit" onclick="submitComplaint()">Submit Complaint</button>
         </section>
 
@@ -88,6 +95,18 @@
             <input type="text" id="trackId" placeholder="Enter Complaint ID">
             <button onclick="trackComplaint()">Track</button>
             <div id="trackResult"></div>
+
+            <!-- Crowd Verification -->
+            <div class="crowd-box glass">
+                <h3>Community Verification</h3>
+                <p><span id="verifyCount">0</span> citizens verified this issue</p>
+                <button onclick="verifyIssue()">✔ Verify Issue</button>
+            </div>
+            <!-- Citizen Reputation -->
+            <div class="reputation-box">
+                🏅 Your Civic Reputation:
+                <span id="repScore">0</span>
+            </div>
         </section>
 
         <!-- MAP -->
@@ -132,15 +151,15 @@
             <option>Zone C</option>
         </select>
         <section class="zone-analytics glass">
-       <h2>Ward / Zone Live Analytics</h2>
-         <select id="zoneSelect" onchange="updateZone()">
-          <option>Zone A</option>
-          <option>Zone B</option>
-         <option>Zone C</option>
-        </select>
+            <h2>Ward / Zone Live Analytics</h2>
+            <select id="zoneSelect" onchange="updateZone()">
+                <option>Zone A</option>
+                <option>Zone B</option>
+                <option>Zone C</option>
+            </select>
 
-      <canvas id="zoneChart"></canvas>
-</section>
+            <canvas id="zoneChart"></canvas>
+        </section>
 
         <section class="share glass">
             <h2>Spread Awareness</h2>
@@ -169,6 +188,23 @@
 
     </main>
     <script src="script.js"></script>
+    <!-- 🤖 CHATBOT BUTTON -->
+    <div id="chatbot-btn" onclick="toggleChat()">🤖</div>
+
+    <!-- 🤖 CHATBOT WINDOW -->
+    <div id="chatbot" class="glass">
+        <div class="chat-header">
+            CivicSense AI (Gemini)
+            <span onclick="toggleChat()">✖</span>
+        </div>
+
+        <div id="chat-body"></div>
+
+        <div class="chat-input">
+            <input type="text" id="chatText" placeholder="Ask about complaints, wards, help..." />
+            <button onclick="sendChat()">Send</button>
+        </div>
+    </div>
 </body>
 
 </html>

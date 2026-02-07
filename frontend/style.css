@@ -305,3 +305,429 @@ body.disaster {
     background: #0f172a;
     color: #00ffd5;
 }
+
+/* ===============================
+   🇮🇳 HIGH VISIBILITY INDIAN FLAG
+   =============================== */
+
+/* Tricolor bands – more visible */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+        linear-gradient(to bottom,
+            rgba(255, 153, 51, 0.28),
+            /* Saffron – stronger */
+            rgba(255, 255, 255, 0.22),
+            /* White */
+            rgba(19, 136, 8, 0.28)
+            /* Green – stronger */
+        );
+}
+
+/* Ashoka Chakra – bigger & clearer */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/1/17/Ashoka_Chakra.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 420px;
+    /* Bigger */
+    opacity: 0.12;
+    /* More visible */
+    pointer-events: none;
+}
+
+/* Extra soft overlay to keep UI readable */
+main,
+header,
+section,
+.glass {
+    background-color: rgba(255, 255, 255, 0.92);
+}
+
+body.dark main,
+body.dark header,
+body.dark section,
+body.dark .glass {
+    background-color: rgba(15, 23, 42, 0.92);
+}
+
+/* ===============================
+   🤖 CHATBOT UI
+   =============================== */
+#chatbot-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #1e88e5, #00c853);
+    color: white;
+    padding: 14px;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 255, 213, 0.8);
+    z-index: 1000;
+}
+
+#chatbot {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 320px;
+    height: 420px;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.chat-header {
+    background: linear-gradient(135deg, #1e88e5, #00c853);
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 18px 18px 0 0;
+}
+
+#chat-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+
+.chat-msg {
+    margin-bottom: 8px;
+}
+
+.user {
+    text-align: right;
+    color: #1e88e5;
+}
+
+.bot {
+    text-align: left;
+    color: #00c853;
+}
+
+.chat-input {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+/* =========================================
+   🇮🇳 INDIAN TRICOLOUR HEADER (ONLY)
+   ========================================= */
+
+header {
+    position: relative;
+    overflow: hidden;
+    background: transparent !important;
+}
+
+/* Tricolour strip */
+header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right,
+            rgba(255, 153, 51, 0.35),
+            /* Saffron */
+            rgba(255, 255, 255, 0.35),
+            /* White */
+            rgba(19, 136, 8, 0.35)
+            /* Green */
+        );
+    z-index: 0;
+}
+
+/* Subtle Ashoka Chakra in header */
+header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/1/17/Ashoka_Chakra.svg") no-repeat center;
+    background-size: 120px;
+    opacity: 0.12;
+    z-index: 0;
+}
+
+/* Bring header content above flag */
+header * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Optional: slight glass effect */
+header {
+    backdrop-filter: blur(8px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+ /* =========================================
+   🇮🇳 ANIMATED TRICOLOUR HEADER (SLOW WAVE)
+   ========================================= */
+
+header {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Tricolour wave */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255,153,51,0.45),
+    rgba(255,255,255,0.45),
+    rgba(19,136,8,0.45)
+  );
+  background-size: 200% 200%;
+  animation: flagWave 10s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Ashoka Chakra */
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/1/17/Ashoka_Chakra.svg")
+              no-repeat center;
+  background-size: 120px;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+@keyframes flagWave {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Header content above wave */
+header * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Glass polish */
+header {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+}
+/* =========================================
+   🤖 CHATBOT TRICOLOUR GLOW
+   ========================================= */
+
+#chatbot-btn {
+  background: linear-gradient(
+    120deg,
+    #ff9933,
+    #ffffff,
+    #138808
+  );
+  background-size: 300% 300%;
+  animation: chatbotGlow 6s linear infinite;
+  color: #000;
+  font-weight: bold;
+  border: none;
+}
+
+@keyframes chatbotGlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+#chatbot-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 25px rgba(255,153,51,0.9),
+              0 0 40px rgba(19,136,8,0.9);
+}
+/* ===============================
+   📷 UPLOAD PHOTO BEAUTIFUL UI
+   =============================== */
+
+.form-section input[type="file"] {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 2px dashed rgba(0,255,255,0.5);
+  background: rgba(0,255,255,0.08);
+  color: #0f172a;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-section input[type="file"]::file-selector-button {
+  background: linear-gradient(135deg,#1e88e5,#00c853);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 12px;
+}
+/* ===============================
+   🖼 IMAGE PREVIEW FIX
+   =============================== */
+
+#preview {
+  margin-top: 12px;
+  max-width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+}
+   /* ===============================
+   📂 CATEGORY SELECT UI
+   =============================== */
+
+.form-section select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: none;
+  font-size: 15px;
+  background: linear-gradient(
+    135deg,
+    rgba(0,255,213,0.15),
+    rgba(255,255,255,0.85)
+  );
+  box-shadow: 0 0 0 2px rgba(0,255,255,0.25);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.form-section select:focus {
+  box-shadow: 0 0 0 2px rgba(0,255,255,0.6),
+              0 0 12px rgba(0,255,255,0.4);
+}
+/* =========================================
+   🇮🇳 ASHOKA CHAKRA – SLOW ROTATION
+   ========================================= */
+
+/* Rotate Ashoka Chakra gently */
+header::after {
+  animation: chakraRotate 60s linear infinite;
+}
+
+/* Very slow, respectful rotation */
+@keyframes chakraRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* ===============================
+   🚦 AI SEVERITY METER UI
+   =============================== */
+
+.severity-box {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.severity-bar {
+  width: 100%;
+  height: 16px;
+  border-radius: 10px;
+  background: #e5e7eb;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.severity-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    #22c55e,
+    #facc15,
+    #ef4444
+  );
+  transition: width 1s ease;
+}
+
+#severityText {
+  margin-top: 8px;
+  font-weight: 600;
+}
+/* ===============================
+   👥 CROWD VERIFICATION UI
+   =============================== */
+
+.crowd-box {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.crowd-box button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg,#2563eb,#22c55e);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.crowd-box button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(34,197,94,0.6);
+}
+/* ===============================
+   🏅 CITIZEN REPUTATION UI
+   =============================== */
+
+.reputation-box {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  background: linear-gradient(
+    135deg,
+    rgba(255,153,51,0.25),
+    rgba(255,255,255,0.6),
+    rgba(19,136,8,0.25)
+  );
+  box-shadow: 0 0 12px rgba(0,0,0,0.15);
+}
+
+.reputation-box span {
+  color: #0f172a;
+  font-size: 18px;
+  margin-left: 6px;
+}
+
+/* Score pulse animation */
+@keyframes scorePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}

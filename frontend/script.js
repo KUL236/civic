@@ -133,3 +133,123 @@ function updateZone() {
     chart.data.datasets[0].data = data[zone];
     chart.update();
 }
+/* ===============================
+   🤖 CHATBOT (GEMINI READY)
+   =============================== */
+function toggleChat() {
+    const bot = document.getElementById("chatbot");
+    bot.style.display = bot.style.display === "flex" ? "none" : "flex";
+}
+
+function addMsg(text, type) {
+    const div = document.createElement("div");
+    div.className = `chat-msg ${type}`;
+    div.innerText = text;
+    document.getElementById("chat-body").appendChild(div);
+    document.getElementById("chat-body").scrollTop = document.getElementById("chat-body").scrollHeight;
+}
+
+async function sendChat() {
+    const input = document.getElementById("chatText");
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    addMsg(msg, "user");
+    input.value = "";
+    addMsg("Thinking…", "bot");
+
+    try {
+        const res = await fetch("http://localhost:5000/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: msg })
+        });
+
+        const data = await res.json();
+        chat - body.lastChild.remove();
+        addMsg(data.reply, "bot");
+    } catch {
+        chat - body.lastChild.remove();
+        addMsg("AI backend not connected.", "bot");
+    }
+}
+/* ===============================
+   🌐 LANGUAGE SWITCH (EN / HI)
+   =============================== */
+
+const translations = {
+    en: {
+        raise: "Raise Complaint",
+        category: "Category",
+        description: "Description",
+        submit: "Submit Complaint",
+        track: "Track Complaint",
+        disaster: "Disaster Mode",
+        active: "Active",
+        resolved: "Resolved",
+        complaints: "Complaints",
+        citizen: "Citizen Score"
+    },
+    hi: {
+        raise: "शिकायत दर्ज करें",
+        category: "श्रेणी",
+        description: "विवरण",
+        submit: "शिकायत भेजें",
+        track: "शिकायत ट्रैक करें",
+        disaster: "आपदा मोड",
+        active: "सक्रिय",
+        resolved: "निस्तारित",
+        complaints: "शिकायतें",
+        citizen: "नागरिक स्कोर"
+    }
+};
+
+function changeLang() {
+    const lang = document.getElementById("lang").value;
+
+    // Section titles
+    document.getElementById("tRaise").innerText = translations[lang].raise;
+
+    // Dashboard cards
+    document.querySelectorAll(".card h3")[0].innerText = translations[lang].active;
+    document.querySelectorAll(".card h3")[1].innerText = translations[lang].resolved;
+    document.querySelectorAll(".card h3")[2].innerText = translations[lang].complaints;
+    document.querySelectorAll(".card h3")[3].innerText = translations[lang].citizen;
+
+    // Buttons
+    document.querySelector(".submit").innerText = translations[lang].submit;
+    document.querySelector(".disaster-btn").innerText =
+        "🚨 " + translations[lang].disaster;
+}
+/* ===============================
+   🤖 AI SEVERITY LOGIC (DEMO)
+   =============================== */
+
+function analyzeSeverity() {
+    const text = document.getElementById("desc").value.toLowerCase();
+    let level = 20;
+    let label = "Low";
+
+    if (text.includes("accident") || text.includes("fire")) {
+        level = 90; label = "Critical";
+    } else if (text.includes("garbage") || text.includes("water")) {
+        level = 60; label = "Medium";
+    }
+
+    document.getElementById("severityFill").style.width = level + "%";
+    document.getElementById("severityText").innerText =
+        "Severity: " + label;
+}
+
+document.getElementById("desc")
+    .addEventListener("input", analyzeSeverity);
+/* ===============================
+👥 CROWD VERIFY LOGIC
+=============================== */
+
+let verifyCount = 0;
+
+function verifyIssue() {
+    verifyCount++;
+    document.getElementById("verifyCount").innerText = verifyCount;
+}
