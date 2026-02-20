@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CivicSense Firewall Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Poppins;
+            background: linear-gradient(120deg, #ff9933, #fff, #138808);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, .9);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, .2);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .complaint {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 14px;
+            background: #f1f5f9;
+        }
+
+        button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 10px;
+            margin-right: 8px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .approve {
+            background: #22c55e;
+        }
+
+        .reject {
+            background: #ef4444;
+        }
+
+        .assign {
+            background: #2563eb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>🛡 CivicSense Firewall Control Center</h2>
+
+    <div class="panel" id="adminList">
+        Loading complaints...
+    </div>
+
+    <script>
+
+        /* ===============================
+           LOAD PENDING COMPLAINTS
+        ================================ */
+
+        async function loadAdmin() {
+
+            const res = await fetch("/api/complaints?status=Pending");
+            const data = await res.json();
+
+            adminList.innerHTML = "";
+
+            data.forEach(c => {
+                adminList.innerHTML += `
+     <div class="complaint">
+       <b>ID:</b> ${c.cid}<br>
+       <b>Category:</b> ${c.category}<br>
+       <b>Status:</b> ${c.status}<br><br>
+
+       <button class="approve" onclick="update('${c._id}','Approved')">Approve</button>
+       <button class="reject" onclick="update('${c._id}','Rejected')">Reject</button>
+       <button class="assign" onclick="update('${c._id}','Assigned')">Assign Officer</button>
+     </div>
+   `;
+            });
+
+        }
+
+        async function update(id, status) {
+            await fetch("/api/complaints/" + id, {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status })
+            });
+            loadAdmin();
+        }
+
+        loadAdmin();
+
+    </script>
+</body>
+
+</html>
+
+function loadAdmin(){
+
+let list = JSON.parse(localStorage.getItem("complaints")) || [];
+
+adminList.innerHTML="";
+
+list.forEach((c,index)=>{
+
+if(c.status==="Pending"){
+
+adminList.innerHTML+=`
+<div class="complaint">
+    <b>ID:</b> ${c.cid}<br>
+    <b>Category:</b> ${c.category}<br>
+    <b>Status:</b> ${c.status}<br><br>
+
+    <button onclick="approve($index)">Approve</button>
+</div>
+`;
+}
+
+});
+
+}
+
+function approve(i){
+
+let list = JSON.parse(localStorage.getItem("complaints"));
+
+list[i].status="Approved";
+
+localStorage.setItem("complaints",JSON.stringify(list));
+
+loadAdmin();
+}
+
+loadAdmin();

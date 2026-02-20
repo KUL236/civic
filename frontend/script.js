@@ -248,8 +248,19 @@ document.getElementById("desc")
 =============================== */
 
 let verifyCount = 0;
+/* ===============================
+   SHOW USER EMAIL ON TOP
+================================ */
 
-function verifyIssue() {
-    verifyCount++;
-    document.getElementById("verifyCount").innerText = verifyCount;
+const emailTop = document.getElementById("userEmailTop");
+
+if (emailTop) {
+    const email = localStorage.getItem("userEmail");
+
+    if (email) {
+        emailTop.innerText = email;
+    }
+    else {
+        emailTop.innerText = "Guest";
+    }
 }

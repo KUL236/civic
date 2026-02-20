@@ -16,15 +16,23 @@
             <img src="https://cdn-icons-png.flaticon.com/512/565/565547.png">
             <h1>CivicSense</h1>
             <span>Smart Country Complaint System</span>
-        </div>
+            <div class="top-controls">
 
-        <div class="top-controls">
-            <select id="lang" onchange="changeLang()">
-                <option value="en">English</option>
-                <option value="hi">हिंदी</option>
-            </select>
-            <button onclick="toggleTheme()">🌗</button>
-        </div>
+                <!-- Language -->
+                <select id="lang" onchange="changeLang()" class="ctrl-btn">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                </select>
+
+                <!-- Dark Mode -->
+                <button onclick="toggleTheme()" class="ctrl-btn">🌗</button>
+
+                <!-- User Email -->
+                <div class="user-box">
+                    👤 <span id="userEmailTop">Guest</span>
+                </div>
+
+            </div>
     </header>
 
     <main>

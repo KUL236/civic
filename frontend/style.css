@@ -477,257 +477,709 @@ header {
     backdrop-filter: blur(8px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
- /* =========================================
+
+/* =========================================
    🇮🇳 ANIMATED TRICOLOUR HEADER (SLOW WAVE)
    ========================================= */
 
 header {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Tricolour wave */
 header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(255,153,51,0.45),
-    rgba(255,255,255,0.45),
-    rgba(19,136,8,0.45)
-  );
-  background-size: 200% 200%;
-  animation: flagWave 10s ease-in-out infinite;
-  z-index: 0;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg,
+            rgba(255, 153, 51, 0.45),
+            rgba(255, 255, 255, 0.45),
+            rgba(19, 136, 8, 0.45));
+    background-size: 200% 200%;
+    animation: flagWave 10s ease-in-out infinite;
+    z-index: 0;
 }
 
 /* Ashoka Chakra */
 header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("https://upload.wikimedia.org/wikipedia/commons/1/17/Ashoka_Chakra.svg")
-              no-repeat center;
-  background-size: 120px;
-  opacity: 0.15;
-  z-index: 0;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/1/17/Ashoka_Chakra.svg") no-repeat center;
+    background-size: 120px;
+    opacity: 0.15;
+    z-index: 0;
 }
 
 @keyframes flagWave {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Header content above wave */
 header * {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1;
 }
 
 /* Glass polish */
 header {
-  backdrop-filter: blur(10px);
-  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
 }
+
 /* =========================================
    🤖 CHATBOT TRICOLOUR GLOW
    ========================================= */
 
 #chatbot-btn {
-  background: linear-gradient(
-    120deg,
-    #ff9933,
-    #ffffff,
-    #138808
-  );
-  background-size: 300% 300%;
-  animation: chatbotGlow 6s linear infinite;
-  color: #000;
-  font-weight: bold;
-  border: none;
+    background: linear-gradient(120deg,
+            #ff9933,
+            #ffffff,
+            #138808);
+    background-size: 300% 300%;
+    animation: chatbotGlow 6s linear infinite;
+    color: #000;
+    font-weight: bold;
+    border: none;
 }
 
 @keyframes chatbotGlow {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 #chatbot-btn:hover {
-  transform: scale(1.12);
-  box-shadow: 0 0 25px rgba(255,153,51,0.9),
-              0 0 40px rgba(19,136,8,0.9);
+    transform: scale(1.12);
+    box-shadow: 0 0 25px rgba(255, 153, 51, 0.9),
+        0 0 40px rgba(19, 136, 8, 0.9);
 }
+
 /* ===============================
    📷 UPLOAD PHOTO BEAUTIFUL UI
    =============================== */
 
 .form-section input[type="file"] {
-  width: 100%;
-  padding: 14px;
-  border-radius: 14px;
-  border: 2px dashed rgba(0,255,255,0.5);
-  background: rgba(0,255,255,0.08);
-  color: #0f172a;
-  cursor: pointer;
-  transition: 0.3s;
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: 2px dashed rgba(0, 255, 255, 0.5);
+    background: rgba(0, 255, 255, 0.08);
+    color: #0f172a;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .form-section input[type="file"]::file-selector-button {
-  background: linear-gradient(135deg,#1e88e5,#00c853);
-  border: none;
-  padding: 10px 16px;
-  border-radius: 5px;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  margin-right: 12px;
+    background: linear-gradient(135deg, #1e88e5, #00c853);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 12px;
 }
+
 /* ===============================
    🖼 IMAGE PREVIEW FIX
    =============================== */
 
 #preview {
-  margin-top: 12px;
-  max-width: 100%;
-  border-radius: 14px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+    margin-top: 12px;
+    max-width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
 }
-   /* ===============================
+
+/* ===============================
    📂 CATEGORY SELECT UI
    =============================== */
 
 .form-section select {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 14px;
-  border: none;
-  font-size: 15px;
-  background: linear-gradient(
-    135deg,
-    rgba(0,255,213,0.15),
-    rgba(255,255,255,0.85)
-  );
-  box-shadow: 0 0 0 2px rgba(0,255,255,0.25);
-  outline: none;
-  appearance: none;
-  cursor: pointer;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: none;
+    font-size: 15px;
+    background: linear-gradient(135deg,
+            rgba(0, 255, 213, 0.15),
+            rgba(255, 255, 255, 0.85));
+    box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.25);
+    outline: none;
+    appearance: none;
+    cursor: pointer;
 }
 
 .form-section select:focus {
-  box-shadow: 0 0 0 2px rgba(0,255,255,0.6),
-              0 0 12px rgba(0,255,255,0.4);
+    box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.6),
+        0 0 12px rgba(0, 255, 255, 0.4);
 }
+
 /* =========================================
    🇮🇳 ASHOKA CHAKRA – SLOW ROTATION
    ========================================= */
 
 /* Rotate Ashoka Chakra gently */
 header::after {
-  animation: chakraRotate 60s linear infinite;
+    animation: chakraRotate 60s linear infinite;
 }
 
 /* Very slow, respectful rotation */
 @keyframes chakraRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
+
 /* ===============================
    🚦 AI SEVERITY METER UI
    =============================== */
 
 .severity-box {
-  margin-top: 20px;
-  padding: 16px;
-  border-radius: 16px;
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 16px;
 }
 
 .severity-bar {
-  width: 100%;
-  height: 16px;
-  border-radius: 10px;
-  background: #e5e7eb;
-  overflow: hidden;
-  margin-top: 10px;
+    width: 100%;
+    height: 16px;
+    border-radius: 10px;
+    background: #e5e7eb;
+    overflow: hidden;
+    margin-top: 10px;
 }
 
 .severity-bar span {
-  display: block;
-  height: 100%;
-  width: 0%;
-  border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    #22c55e,
-    #facc15,
-    #ef4444
-  );
-  transition: width 1s ease;
+    display: block;
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    background: linear-gradient(90deg,
+            #22c55e,
+            #facc15,
+            #ef4444);
+    transition: width 1s ease;
 }
 
 #severityText {
-  margin-top: 8px;
-  font-weight: 600;
+    margin-top: 8px;
+    font-weight: 600;
 }
+
 /* ===============================
    👥 CROWD VERIFICATION UI
    =============================== */
 
 .crowd-box {
-  margin-top: 20px;
-  padding: 16px;
-  border-radius: 16px;
-  text-align: center;
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 16px;
+    text-align: center;
 }
 
 .crowd-box button {
-  margin-top: 10px;
-  padding: 10px 18px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg,#2563eb,#22c55e);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
+    margin-top: 10px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #2563eb, #22c55e);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .crowd-box button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(34,197,94,0.6);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
 }
+
 /* ===============================
    🏅 CITIZEN REPUTATION UI
    =============================== */
 
 .reputation-box {
-  margin-top: 12px;
-  padding: 10px;
-  border-radius: 12px;
-  font-weight: 600;
-  background: linear-gradient(
-    135deg,
-    rgba(255,153,51,0.25),
-    rgba(255,255,255,0.6),
-    rgba(19,136,8,0.25)
-  );
-  box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    background: linear-gradient(135deg,
+            rgba(255, 153, 51, 0.25),
+            rgba(255, 255, 255, 0.6),
+            rgba(19, 136, 8, 0.25));
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
 }
 
 .reputation-box span {
-  color: #0f172a;
-  font-size: 18px;
-  margin-left: 6px;
+    color: #0f172a;
+    font-size: 18px;
+    margin-left: 6px;
 }
 
 /* Score pulse animation */
 @keyframes scorePulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ===============================
+   USER EMAIL TOP BAR
+================================ */
+
+.user-box {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .6);
+    backdrop-filter: blur(10px);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+}
+
+/* ===============================
+   HEADER LAYOUT FIX
+================================ */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+    position: relative;
+}
+
+/* RIGHT SIDE CONTROLS */
+.top-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* space between buttons */
+}
+
+/* COMMON BUTTON STYLE */
+.ctrl-btn {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .6);
+    backdrop-filter: blur(10px);
+    font-family: Poppins;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+}
+
+/* USER EMAIL BADGE */
+.user-box {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+}
+
+/* =========================================
+   ✅ FORCE HEADER CONTROLS IN ONE LINE
+   (Override without deleting old CSS)
+========================================= */
+
+/* Keep header clean flex layout */
+header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+/* Right side container */
+.top-controls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-wrap: nowrap !important;
+    z-index: 5;
+}
+
+/* OVERRIDE floating user-box */
+header .user-box {
+    position: relative !important;
+    /* cancel absolute */
+    top: auto !important;
+    right: auto !important;
+    margin-left: 6px;
+}
+
+/* Make buttons same height */
+.top-controls select,
+.top-controls button,
+.top-controls .ctrl-btn,
+.top-controls .user-box {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Prevent capsule breaking layout */
+.top-controls * {
+    white-space: nowrap;
+}
+
+/* =========================================
+   🚀 FUTURISTIC RIGHT-SIDE CONTROL BAR
+   (NO REMOVAL – SAFE OVERRIDE)
+========================================= */
+
+/* Push logo left + controls right */
+header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+/* RIGHT SIDE CONTAINER */
+.top-controls {
+    margin-left: auto;
+    display: flex !important;
+    align-items: center;
+    gap: 14px;
+    padding: 6px 10px;
+    border-radius: 30px;
+
+    /* FUTURISTIC GLASS CAPSULE */
+    background: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(12px);
+    box-shadow:
+        0 0 12px rgba(0, 255, 213, .4),
+        inset 0 0 10px rgba(255, 255, 255, .25);
+}
+
+/* Every control = same futuristic style */
+.top-controls select,
+.top-controls button,
+.top-controls .user-box {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    background: linear-gradient(120deg,
+            rgba(255, 153, 51, .35),
+            rgba(255, 255, 255, .5),
+            rgba(19, 136, 8, .35));
+    box-shadow: 0 0 10px rgba(0, 255, 213, .4);
+    transition: .3s;
+}
+
+/* Hover futuristic glow */
+.top-controls select:hover,
+.top-controls button:hover,
+.top-controls .user-box:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow:
+        0 0 15px #00ffd5,
+        0 0 25px rgba(30, 136, 229, .6);
+}
+
+/* User badge neon pulse */
+.top-controls .user-box {
+    animation: userPulse 4s ease-in-out infinite;
+}
+
+@keyframes userPulse {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 255, 213, .4);
+    }
+
+    50% {
+        box-shadow: 0 0 22px rgba(255, 153, 51, .6);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(0, 255, 213, .4);
+    }
+}
+
+/* =========================================
+   🚀 FORCE CONTROLS TO RIGHT SIDE
+========================================= */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* push controls fully right */
+.top-controls {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    z-index: 10;
+    /* always above chakra */
+}
+
+/* make logo stay left */
+.logo {
+    margin-right: auto;
+    z-index: 10;
+    position: relative;
+}
+
+/* =========================================
+   🇮🇳 FIX CHAKRA POSITION (NO SUPERIMPOSE)
+========================================= */
+
+/* move chakra slightly LEFT so it sits behind logo only */
+header::after {
+    z-index: 0 !important;
+    pointer-events: none;
+    transform: translateX(-140px);
+    /* KEY FIX */
+    opacity: .10;
+}
+
+/* tricolour wave behind everything */
+header::before {
+    z-index: -1;
+}
+
+/* ensure buttons stay on top */
+.top-controls * {
+    position: relative;
+    z-index: 20;
+}
+
+/* =========================================
+   🚀 HEADER CONTROL LAYER FIX
+========================================= */
+
+/* keep header layout stable */
+header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* LOGO LEFT */
+.logo {
+    position: relative;
+    z-index: 5;
+}
+
+/* CONTROLS RIGHT (ALWAYS ABOVE CHAKRA) */
+.top-controls {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 50;
+    /* IMPORTANT */
+}
+
+/* =========================================
+   🇮🇳 MOVE ASHOKA CHAKRA BEHIND ONLY LOGO
+========================================= */
+
+header::after {
+    left: 120px;
+    /* shift chakra left */
+    right: auto;
+    width: 220px;
+    /* smaller focus area */
+    opacity: .08;
+    z-index: 1;
+    /* BELOW CONTROLS */
+    pointer-events: none;
+}
+
+/* make sure buttons never blend */
+.ctrl-btn,
+#lang {
+    position: relative;
+    z-index: 60;
+}
+
+/* =========================================
+   🇮🇳 RIGHT SIDE ASHOKA CHAKRA (FINAL CLEAN)
+   ========================================= */
+
+/* Ensure header acts as positioning container */
+header {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Chakra positioned to RIGHT side */
+header::after {
+    content: "";
+    position: absolute !important;
+
+    right: 180px;
+    /* 🔥 move left/right if needed */
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 120px;
+    height: 120px;
+
+    background: url("https://upload.wikimedia.org/wikipedia/commons/1/17/Ashoka_Chakra.svg") no-repeat center;
+    background-size: contain;
+
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+
+    animation: chakraRotateRight 60s linear infinite;
+    /* very slow */
+}
+
+/* smooth respectful rotation */
+@keyframes chakraRotateRight {
+    from {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* keep buttons/logo above chakra */
+header * {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================
+🏛️ CIVICSENSE – TRUSTED GOV STYLE UPGRADE
+========================================= */
+
+/* Softer civic color palette */
+:root {
+    --civic-blue: #1f4e79;
+    --civic-green: #2e7d32;
+    --civic-light: #e8f0f7;
+}
+
+/* Header becomes clean government style */
+header {
+    background: linear-gradient(90deg, #f3f7fb, #e8f0f7) !important;
+    color: #1f2937;
+}
+
+/* CivicSense title more official look */
+.logo h1 {
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: var(--civic-blue);
+}
+
+.logo span {
+    color: #475569;
+    font-size: 13px;
+}
+
+/* Cards become professional instead of neon */
+.card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, .08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+}
+
+/* Remove heavy cyber glow feel */
+.glow {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+}
+
+/* Buttons more civic friendly */
+button {
+    background: linear-gradient(90deg, var(--civic-blue), #2563eb);
+}
+
+.submit {
+    background: linear-gradient(90deg, var(--civic-green), #22c55e);
+}
+
+/* Form sections look like govt dashboard panels */
+.form-section,
+.track,
+.analytics,
+.contacts,
+.open-data {
+    border: 1px solid rgba(0, 0, 0, .08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+}
+
+/* Chakra becomes subtle official watermark */
+header::after {
+    opacity: .08;
+}
+
+/* =========================================
+🌙 DARK MODE CARD TEXT FIX
+========================================= */
+
+/* Dark mode cards become dark */
+body.dark .card {
+    background: rgba(15, 23, 42, .85);
+    border: 1px solid rgba(255, 255, 255, .08);
+}
+
+/* Text inside cards becomes bright */
+body.dark .card h2,
+body.dark .card h3,
+body.dark .card p,
+body.dark .card span {
+    color: #e2e8f0 !important;
+}
+
+/* Numbers more visible */
+body.dark .card strong {
+    color: #22c55e;
+    font-size: 22px;
+}
+
+/* Glass sections also darker */
+body.dark .glass {
+    background: rgba(15, 23, 42, .7);
 }

@@ -1,0 +1,31 @@
+<h2>Officer Dashboard</h2>
+<div id="officerList"></div>
+
+<script>
+    async function loadOfficer() {
+        const res = await fetch("/api/complaints?status=Approved");
+        const data = await res.json();
+
+        officerList.innerHTML = "";
+
+        data.forEach(c => {
+            officerList.innerHTML += `
+   <div>
+     Complaint ${c.cid} - ${c.category}
+     <button onclick="resolve('${c._id}')">Resolve</button>
+   </div>
+  `;
+        });
+    }
+
+    async function resolve(id) {
+        await fetch("/api/complaints/" + id, {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'Resolved' })
+        });
+        loadOfficer();
+    }
+
+    loadOfficer();
+</script>

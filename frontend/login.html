@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicSense Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===============================
+   GLOBAL STYLE
+================================ */
+        body {
+            margin: 0;
+            font-family: Poppins;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg,
+                    rgba(255, 153, 51, .6),
+                    rgba(255, 255, 255, .5),
+                    rgba(19, 136, 8, .6));
+            background-size: 200% 200%;
+            animation: bgMove 10s ease infinite;
+        }
+
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* ===============================
+   LOGIN CARD
+================================ */
+        .login-container {
+            width: 360px;
+            padding: 32px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, .18);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 35px rgba(0, 0, 0, .2);
+            text-align: center;
+        }
+
+        /* LOGO */
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            margin-bottom: 20px;
+            opacity: .7;
+        }
+
+        /* INPUTS */
+        .input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 12px;
+            outline: none;
+            background: rgba(255, 255, 255, .9);
+            font-size: 14px;
+            box-shadow: 0 0 0 2px rgba(0, 255, 255, .2);
+        }
+
+        .input:focus {
+            box-shadow: 0 0 0 2px rgba(0, 255, 255, .6),
+                0 0 12px rgba(0, 255, 255, .4);
+        }
+
+        /* ROLE SELECT */
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background: white;
+            margin-top: 10px;
+        }
+
+        /* LOGIN BUTTON */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(135deg, #1e88e5, #00c853);
+            transition: .3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 18px rgba(0, 255, 213, .7);
+        }
+
+        /* FOOTER TEXT */
+        .footer {
+            margin-top: 15px;
+            font-size: 12px;
+            opacity: .7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">CivicSense </div>
+        <div class="subtitle">Smart Governance Login Portal</div>
+
+        <input class="input" id="email" type="email" placeholder="Enter Email">
+        <input class="input" id="password" type="password" placeholder="Password">
+
+        <select id="role">
+            <option value="citizen">Citizen Login</option>
+            <option value="officer">Officer Panel</option>
+            <option value="admin">Admin Firewall Panel</option>
+        </select>
+
+        <button class="login-btn" onclick="loginUser()">Login Securely</button>
+        <p style="margin-top:12px;font-size:13px;">
+            Don’t have an account?
+            <span onclick="showRegister()" style="color:#2563eb;cursor:pointer;font-weight:600;">
+                Register Here
+            </span>
+        </p>
+        <div class="footer">
+            Secure access • Civic Sense
+        </div>
+
+    </div>
+    <div id="registerBox" class="login-container" style="display:none;margin-top:20px;">
+
+        <div class="logo">Register CivicSense</div>
+
+        <input class="input" id="regEmail" type="email" placeholder="Enter Email">
+        <input class="input" id="regPassword" type="password" placeholder="Create Password">
+
+        <select id="regRole">
+            <option value="citizen">Citizen</option>
+            <option value="officer">Officer</option>
+        </select>
+
+        <button class="login-btn" onclick="registerUser()">Create Account</button>
+
+    </div>
+    <script>
+
+        /* ===============================
+           SHOW REGISTER PANEL
+        ================================ */
+        function showRegister() {
+            document.getElementById("registerBox").style.display = "block";
+        }
+
+        /* ===============================
+           REGISTER USER (localStorage DB)
+        ================================ */
+        function registerUser() {
+
+            const email = regEmail.value.trim();
+            const password = regPassword.value.trim();
+            const role = regRole.value;
+
+            if (email === "" || password === "") {
+                alert("Fill all fields");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            users.push({ email, password, role });
+
+            localStorage.setItem("users", JSON.stringify(users));
+
+            alert("Account Created Successfully ✔");
+
+        }
+
+        /* ===============================
+           LOGIN USER
+        ================================ */
+        function loginUser() {
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const role = document.getElementById("role").value;
+
+            if (email === "") {
+                alert("⚠ Please enter your email");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            const found = users.find(u => u.email === email && u.password === password && u.role === role);
+
+            if (!found) {
+                alert("Invalid login details");
+                return;
+            }
+
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userRole", role);
+
+            if (role === "citizen") {
+                window.location.href = "index.html";
+            }
+            else if (role === "officer") {
+                window.location.href = "officer.html";
+            }
+            else {
+                window.location.href = "admin.html";
+            }
+
+        }
+
+    </script>
+</body>
+<script>
+    function loginUser() {
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const role = document.getElementById("role").value;
+
+        // 🔴 CHECK EMAIL FIRST
+        if (email === "") {
+            alert("⚠ Please enter your email to login");
+            return; // stop login
+        }
+
+        // OPTIONAL: basic email format check
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            alert("⚠ Enter a valid email address");
+            return;
+        }
+
+        // SAVE LOGIN SESSION (for panels)
+        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userRole", role);
+
+        // ROLE BASED REDIRECT
+        if (role === "citizen") {
+            window.location.href = "index.html";
+        }
+        else if (role === "officer") {
+            window.location.href = "officer.html";
+        }
+        else {
+            window.location.href = "admin.html";
+        }
+
+    }
+</script>
+
+</html>
