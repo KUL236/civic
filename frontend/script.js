@@ -264,3 +264,29 @@ if (emailTop) {
         emailTop.innerText = "Guest";
     }
 }
+/* ===============================
+   🔐 LOGIN PANEL TOGGLE
+================================ */
+
+function openLogin() {
+    const panel = document.getElementById("loginPanel");
+
+    if (panel) {
+        panel.style.display = "flex";
+    }
+}
+
+function closeLogin() {
+    const panel = document.getElementById("loginPanel");
+
+    if (panel) {
+        panel.style.display = "none";
+    }
+}
+function openLogin() {
+    document.getElementById("loginPanel").style.display = "flex";
+}
+
+function closeLogin() {
+    document.getElementById("loginPanel").style.display = "none";
+}

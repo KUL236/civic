@@ -29,10 +29,32 @@
 
                 <!-- User Email -->
                 <div class="user-box">
+                    <button onclick="window.location.href='login.html'"></button>
                     👤 <span id="userEmailTop">Guest</span>
                 </div>
 
             </div>
+            <!-- 🔐 LOGIN POPUP -->
+            <div id="loginPanel" class="login-overlay">
+
+                <div class="login-card">
+                    <h3>Smart Governance Login</h3>
+
+                    <input type="email" placeholder="Enter Email">
+                    <input type="password" placeholder="Password">
+
+                    <select>
+                        <option>Citizen Login</option>
+                        <option>Officer Login</option>
+                        <option>Admin Login</option>
+                    </select>
+
+                    <button onclick="closeLogin()">Login Securely</button>
+
+                </div>
+
+            </div>
+
     </header>
 
     <main>
