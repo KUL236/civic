@@ -1,0 +1,49 @@
+{
+  "name": "CivicSense - Smart City Complaint System",
+  "short_name": "CivicSense",
+  "description": "AI-powered civic complaint management system with real-time tracking",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff9933",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23ff9933' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dominant-baseline='central' font-weight='bold'>CS</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23ff9933' width='512' height='512'/><text x='50%' y='50%' font-size='200' fill='white' text-anchor='middle' dominant-baseline='central' font-weight='bold'>CS</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23f0f0f0' width='540' height='720'/><text x='270' y='360' font-size='60' text-anchor='middle' dominant-baseline='central'>CivicSense App</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Raise Complaint",
+      "short_name": "New Complaint",
+      "description": "File a new civic complaint",
+      "url": "/index.html",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23138808' width='192' height='192'/><text x='50%' y='50%' font-size='100' text-anchor='middle' dominant-baseline='central'>+</text></svg>", "sizes": "192x192" }]
+    },
+    {
+      "name": "Popular Complaints",
+      "short_name": "Popular",
+      "description": "View most liked complaints",
+      "url": "/popular.html",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%232563eb' width='192' height='192'/><text x='50%' y='50%' font-size='80' text-anchor='middle' dominant-baseline='central'>👍</text></svg>", "sizes": "192x192" }]
+    }
+  ]
+}

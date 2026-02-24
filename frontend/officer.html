@@ -1,31 +1,175 @@
-<h2>Officer Dashboard</h2>
-<div id="officerList"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Officer Dashboard - CivicSense</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff9933">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .alert {
+            background: #ffeb3b;
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .complaint-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .complaint-info {
+            flex: 1;
+        }
+        .complaint-id {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        .complaint-details {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .complaint-details b {
+            color: #333;
+        }
+        .resolve-btn {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .resolve-btn:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+        .empty-message {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            padding: 40px;
+        }
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚔 Officer Dashboard</h1>
+        <div class="alert">⏳ Assigned Complaints - Please Resolve</div>
+        <div id="officerList"></div>
+    </div>
 
-<script>
-    async function loadOfficer() {
-        const res = await fetch("/api/complaints?status=Approved");
-        const data = await res.json();
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-        officerList.innerHTML = "";
+        const firebaseConfig = {
+            apiKey: "AIzaSyDutz15Pqpkg4f6u2jEgJsE4kfX789VoqI",
+            authDomain: "civic-b1f7c.firebaseapp.com",
+            projectId: "civic-b1f7c",
+            storageBucket: "civic-b1f7c.firebasestorage.app",
+            messagingSenderId: "349255365682",
+            appId: "1:349255365682:web:d3a2bf0a3192ff8d70b82b",
+            measurementId: "G-ZPDE3ZRBPX"
+        };
 
-        data.forEach(c => {
-            officerList.innerHTML += `
-   <div>
-     Complaint ${c.cid} - ${c.category}
-     <button onclick="resolve('${c._id}')">Resolve</button>
-   </div>
-  `;
-        });
-    }
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const officerList = document.getElementById("officerList");
 
-    async function resolve(id) {
-        await fetch("/api/complaints/" + id, {
-            method: "PUT",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: 'Resolved' })
-        });
+        // Real-time listener for approved complaints
+        function loadOfficer() {
+            console.log("📋 Loading officer complaints...");
+            
+            const q = query(collection(db, "complaints"), where("status", "==", "Approved"));
+            
+            onSnapshot(q, (snapshot) => {
+                console.log("✅ Complaints updated:", snapshot.size);
+                officerList.innerHTML = "";
+                
+                if (snapshot.empty) {
+                    officerList.innerHTML = '<div class="empty-message">✅ No assigned complaints</div>';
+                    return;
+                }
+                
+                snapshot.forEach(d => {
+                    const c = d.data();
+                    const location = c.lat && c.lon ? 
+                        `<a href="https://maps.google.com/?q=${c.lat},${c.lon}" target="_blank" style="color: #667eea; text-decoration: underline;">View Location</a>` : 
+                        "N/A";
+                    
+                    officerList.innerHTML += `
+                        <div class="complaint-card">
+                            <div class="complaint-info">
+                                <div class="complaint-id">📌 ${c.cid}</div>
+                                <div class="complaint-details">
+                                    <b>Category:</b> ${c.category || 'N/A'}<br>
+                                    <b>Description:</b> ${c.desc || 'N/A'}<br>
+                                    <b>Mobile:</b> ${c.mobile || 'N/A'}<br>
+                                    <b>Location:</b> ${location}<br>
+                                    <b>Status:</b> <span style="color: #ff9933; font-weight: bold;">Approved</span>
+                                </div>
+                            </div>
+                            <button class="resolve-btn" onclick="resolveComplaint('${d.id}')">✅ Resolve</button>
+                        </div>
+                    `;
+                });
+            }, (error) => {
+                console.error("❌ Error loading complaints:", error);
+                officerList.innerHTML = '<div class="empty-message">❌ Error loading data</div>';
+            });
+        }
+
+        // Resolve complaint and update status
+        window.resolveComplaint = async function(docId) {
+            try {
+                console.log("🔄 Resolving complaint:", docId);
+                await updateDoc(doc(db, "complaints", docId), { status: 'Resolved' });
+                console.log("✅ Complaint resolved!");
+                alert("✅ Complaint marked as resolved!");
+            } catch (error) {
+                console.error("❌ Error resolving complaint:", error);
+                alert("❌ Error: " + error.message);
+            }
+        };
+
+        // Load complaints on page load
         loadOfficer();
-    }
-
-    loadOfficer();
-</script>
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complaint Popularity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff9933">
+    <meta name="mobile-web-app-capable" content="yes">
+    <style>
+        body { font-family: Poppins; padding: 20px; }
+        .complaint { margin: 12px 0; padding: 12px; border: 1px solid #ccc; border-radius: 8px; }
+        .complaint button { margin-top: 6px; padding: 4px 8px; }
+    </style>
+</head>
+<body>
+    <h2>Most Liked Complaints</h2>
+    <div id="popularList">Loading...</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import {
+            getFirestore, collection, query, orderBy,
+            onSnapshot, updateDoc, doc, increment
+        } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDutz15Pqpkg4f6u2jEgJsE4kfX789VoqI",
+            authDomain: "civic-b1f7c.firebaseapp.com",
+            projectId: "civic-b1f7c",
+            storageBucket: "civic-b1f7c.firebasestorage.app",
+            messagingSenderId: "349255365682",
+            appId: "1:349255365682:web:d3a2bf0a3192ff8d70b82b",
+            measurementId: "G-ZPDE3ZRBPX"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const popularList = document.getElementById('popularList');
+
+        onSnapshot(
+            query(collection(db, 'complaints'), orderBy('likes', 'desc')),
+            snapshot => {
+                popularList.innerHTML = '';
+                snapshot.forEach(d => {
+                    const c = d.data();
+                    popularList.innerHTML += `
+                        <div class="complaint">
+                            <b>ID:</b> ${c.cid}<br>
+                            <b>Category:</b> ${c.category}<br>
+                            <b>Description:</b> ${c.desc}<br>
+                            <b>Phone:</b> ${c.mobile||'N/A'}<br>
+                            <b>Location:</b> ${c.lat?`${c.lat.toFixed(4)},${c.lon.toFixed(4)}`:'Unknown'}<br>
+                            <b>Likes:</b> ${c.likes || 0}<br>
+                            <button onclick="like('${d.id}')">👍 Like</button>
+                        </div>
+                    `;
+                });
+            }
+        );
+
+        window.like = async (id) => {
+            await updateDoc(doc(db, 'complaints', id), { likes: increment(1) });
+        };
+    </script>
+</body>
+</html>
